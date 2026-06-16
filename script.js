@@ -1,102 +1,99 @@
-const nome = document.getElementById("nome");
-const cor = document.getElementById("cor");
+const username =
+document.getElementById("username");
 
-function salvarPerfil(){
+const themeColor =
+document.getElementById("themeColor");
 
-localStorage.setItem(
-"nome",
-nome.value
-);
+function saveProfile(){
 
 localStorage.setItem(
-"cor",
-cor.value
+"name",
+username.value
 );
 
-document.documentElement.style.setProperty(
-"--cor",
-cor.value
+localStorage.setItem(
+"color",
+themeColor.value
 );
-}
 
-window.onload=()=>{
-
-if(localStorage.nome){
-
-nome.value = localStorage.nome;
-
-document.getElementById("saudacao")
-.innerHTML =
-`Olá, ${localStorage.nome}!`;
-}
-
-if(localStorage.cor){
-
-cor.value = localStorage.cor;
-
-document.documentElement.style.setProperty(
-"--cor",
-localStorage.cor
+document.documentElement
+.style.setProperty(
+"--primary",
+themeColor.value
 );
+
+updateWelcome();
 }
 
-verificarClima();
-}
+function updateWelcome(){
 
-function verificarClima(){
+const name =
+localStorage.getItem("name");
 
-const hora = new Date().getHours();
+if(name){
 
-const body = document.body;
-
-const icone =
 document.getElementById(
-"climaIcone"
+"welcome"
+).innerHTML =
+`Olá, ${name}!`;
+
+}
+
+}
+
+window.onload = () => {
+
+if(localStorage.getItem("name")){
+
+username.value =
+localStorage.getItem("name");
+
+}
+
+if(localStorage.getItem("color")){
+
+themeColor.value =
+localStorage.getItem("color");
+
+document.documentElement
+.style.setProperty(
+"--primary",
+localStorage.getItem("color"));
+
+}
+
+updateWelcome();
+
+setTheme();
+
+};
+
+function setTheme(){
+
+const hour =
+new Date().getHours();
+
+const icon =
+document.getElementById(
+"weatherIcon"
 );
 
-if(hora >= 6 && hora < 18){
+if(hour >= 6 && hour < 18){
 
-body.classList.add("dia");
+document.body.classList.add(
+"day"
+);
 
-icone.innerHTML = "☀️";
+icon.innerHTML = "☀️";
 
 }else{
 
-body.classList.add("noite");
-
-icone.innerHTML = "🌙";
-}
-
-navigator.geolocation.getCurrentPosition(pos=>{
-
-const lat = pos.coords.latitude;
-const lon = pos.coords.longitude;
-
-fetch(
-`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=rain`
-)
-
-.then(r=>r.json())
-.then(data=>{
-
-if(data.current.rain > 0){
-
-body.className="chuva";
-
-icone.innerHTML="🌧️";
-
-const raio =
-document.createElement("div");
-
-raio.classList.add("raio");
-
-document.body.appendChild(
-raio
+document.body.classList.add(
+"night"
 );
+
+icon.innerHTML = "🌙";
+
 }
-
-});
-
-});
 
 }
