@@ -1,42 +1,45 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Meu Site Mobile</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>1ª Série</title>
+
+<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-    <div id="desktop-block">
-        <h2>Acesso Negado</h2>
-        <p>Este site foi desenvolvido exclusivamente para dispositivos móveis. Por favor, acesse pelo seu celular.</p>
+<header>
+    <div class="logo">📚 1ª Série</div>
+
+    <nav>
+        <a href="atividades.html">Atividades</a>
+        <a href="horarios.html">Horários</a>
+        <a href="avaliacoes.html">Avaliações</a>
+        <a href="trabalhos.html">Trabalhos</a>
+        <a href="avisos.html">Avisos</a>
+    </nav>
+
+    <div class="perfil">
+        <input type="text" id="nome" placeholder="Seu nome">
+
+        <input type="color" id="cor">
+
+        <button onclick="salvarPerfil()">Salvar</button>
     </div>
+</header>
 
-    <div id="mobile-content">
-        <header class="app-header">
-            <h1>Minha App</h1>
-            <button class="menu-btn">☰</button>
-        </header>
+<section id="hero">
 
-        <main class="app-body">
-            <section class="card">
-                <h3>Interface Otimizada</h3>
-                <p>Botões maiores, textos fáceis de ler e navegação por toque (touch-friendly).</p>
-            </section>
+    <div id="climaIcone"></div>
 
-            <section class="card">
-                <h3>Configuração Mobile</h3>
-                <p>O layout se adapta perfeitamente a qualquer tamanho de tela de smartphone.</p>
-            </section>
-        </main>
+    <h1 id="saudacao">
+        Bem-vindo!
+    </h1>
 
-        <nav class="bottom-nav">
-            <a href="#" class="nav-item active">Início</a>
-            <a href="#" class="nav-item">Explorar</a>
-            <a href="#" class="nav-item">Perfil</a>
-        </nav>
-    </div>
+</section>
+
+<script src="js/script.js"></script>
 
 </body>
 </html>
